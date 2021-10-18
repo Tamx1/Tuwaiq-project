@@ -88,7 +88,10 @@ td{
     display: grid;
     row-gap: 40px;
 }
-
+.bp{
+    margin-left: 20%;
+    width: 100px;
+}
 
 .dt{
     padding: 20px;
@@ -226,6 +229,13 @@ ul{
     }
     #b7{margin-left: 25%;
          margin-bottom: 5%;}
+    .bp{
+            margin-left: 35%;
+            width: 100px;
+
+        }
+
+
  }
 
 

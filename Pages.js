@@ -1,3 +1,4 @@
+localStorage.clear();
 function home(){
 
 let div = document.querySelector(".d0");
@@ -72,11 +73,10 @@ function contact2() {
 // -----------------------------------------------------------------------------------------------------------
 
 function login() {
-
+    if(document.querySelector("#login").innerText != 'Login'){alert("Already logged in"); home(); return;}
     let div = document.querySelector(".d0");
-    div.innerHTML = '<div class="dt"> <h2 class="h0 hc" style="color: white;">Login</h2> <form action="Home.html"> <div class="form-group row"> <label for="inputEmail3" class="col-sm-2 col-form-label hc2" style="color: white;">Email :</label> <div class="col-sm-10"> <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required><br> </div> </div> <div class="form-group row"> <label for="inputPassword3" class="col-sm-2 col-form-label hc2" style="color: white;">Password :</label> <div class="col-sm-10"> <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required><br> </div> </div> <fieldset class="form-group"> <div class="row"> <div class="col-sm-10"> <div class="form-check"> <a href="" class="u0 text-primary"> Create new account </a> </div> <div class="form-check"> <a href="" class="u0 text-primary">  Forgot your password? </a> </div> </div> </div> </fieldset> <br> <div class="form-group row"> <div class="col-sm-10"> <button type="submit" class="btn btn-primary b1">Login</button> </div> </div> </form> </div> <br><br><br><br>';
+    div.innerHTML ='<div class="dt"> <h2 class="h0 hc" style="color: white;">Login</h2> <form> <div class="form-group row"> <label for="inputEmail3" class="col-sm-2 col-form-label hc2" style="color: white;">UserName :</label> <div class="col-sm-10"> <input type="text" class="form-control" id="userName" placeholder="User Name"  required ><br> </div> </div> <div class="form-group row"> <label for="inputPassword3" class="col-sm-2 col-form-label hc2" style="color: white;">Password :</label> <div class="col-sm-10"> <input type="password" class="form-control" id="pass" placeholder="Password" required ><br> </div> </div> <fieldset class="form-group"> <div class="row"> <div id="Epassowrd"></div> <div class="col-sm-10"> <div class="form-check"> <a href="" class="u0 text-primary"> Create new account </a> </div> <div class="form-check"> <a href="" class="u0 text-primary">  Forgot your password? </a> </div> </div> </div> </fieldset> <br> <div class="form-group row"> <div class="col-sm-10"> <button type="button" onclick="Users()" class="btn btn-primary b1">Login</button> </div> </div> </form> </div> <br><br><br><br>';
 }
-
 //--------------------------------------------------------------------------------------------------------------
 
 function reviews() {
@@ -86,7 +86,8 @@ function reviews() {
 // ------------------------------------------------------------------------------------------------------------
 
 function catalogue(t) {
-   
+    if(document.querySelector("#login").innerText == 'Login'){alert("You must be logged in"); login(); return;}
+
    
     fetch('https://fakestoreapi.com/products')
     .then(function(response) {return response.json()}).then(function (json)
@@ -235,8 +236,9 @@ function catalogue(t) {
 
 // ------------------------------------------------------------------------------------------------------------
 function cart() {
+    if(document.querySelector("#login").innerText == 'Login'){alert("You must be logged in");  login(); return;}
     let div = document.querySelector(".d0");
-    div.innerHTML = '<h2 class="h0">Your Cart</h2> <hr class="hr0" style="height: 3px;"> <div id="empty" ></div> <div id="cartDiv" ></div> <div id="f0"> <div class="form-group mx-sm-3 mb-2"> <label for="c0" class="sr-only">Discount coupon:</label> <input type="text" class="form-control" id="c0" placeholder="Enter yor coupon"> <button onclick="coupon()" class="btn btn-secondary btn-sm">Check Coupon</button> </div> <p id="p_1" style="margin-left: 5%;"></p> </div> <div class="form-group mx-sm-3 mb-2" id="f1"> <label for="s0" class="sr-only">Delivery :</label> <select class="form-select" aria-label="Default select example" id="s0" onclick="delivery()"> <option selected >Select delivery options</option> <option value="1">Standard Shipping +$8</option> <option value="2">Express Shipping +$12</option> <option value="3">Priority Shipping +$18</option> </select> </div> <div id="t"></div> <div id="sub"> <form action="Home.html"> <button  class="btn btn-secondary" id="b7" type="submit" onclick="order()">Complete the order</button> </form> </div>';
+    div.innerHTML = '<h2 class="h0">Your Cart</h2> <hr class="hr0" style="height: 3px;"> <div id="empty" ></div> <div id="cartDiv" ></div> <div id="f0"> <div class="form-group mx-sm-3 mb-2"> <label for="c0" class="sr-only" style="margin-top: 40px;">Discount coupon:</label> <input type="text" class="form-control" id="c0" placeholder="Enter yor coupon"> <button onclick="coupon()" class="btn btn-secondary btn-sm">Check Coupon</button> </div> <p id="p_1" style="margin-left: 5%;"></p> </div> <div class="form-group mx-sm-3 mb-2" id="f1"> <label for="s0" class="sr-only">Delivery :</label> <select class="form-select" aria-label="Default select example" id="s0" onclick="delivery()"> <option selected >Select delivery options</option> <option value="1">Standard Shipping +$8</option> <option value="2">Express Shipping +$12</option> <option value="3">Priority Shipping +$18</option> </select> </div> <div id="t"></div> <div id="sub"> <form action="Home.html"> <button  class="btn btn-secondary" id="b7" type="submit" onclick="order()">Complete the order</button> </form> </div>';
     cartPage();
 }
 
@@ -357,21 +359,58 @@ function cartPage(){
 
 
 
-    for(let i = 0 ; i < localStorage.length ; i++){
-
+    for(let i = 0 ; i <= 50 ; i++){
         if(JSON.parse(localStorage.getItem(i)) === null){continue;} 
 
-        let emp = document.createElement("hr");
-        emp.style="border: 5px solid #343a40; margin: 0%;";
+        let div1 = document.createElement("div");
+        div1.className = 'container';
+        div1.style = " background-color: #343a40 ; border-bottom: 3px solid #adadad; padding: 20px;";
 
+        let div2 = document.createElement("div");
+        div2.className = 'row';
+        div1.append(div2);
+
+        let div3 = document.createElement("div");
+        div3.className = 'col-sm';
         let temp1 = document.createElement("p");
         temp1.className = "p0";
-        temp1.innerText ="Product name: " +JSON.parse(localStorage.getItem(i)).title +
-        "   |  Price : " + JSON.parse(localStorage.getItem(i)).price +"$";
-        temp1.style ="color: white;margin: 0%; font-size: 9pt; font-weight: bold; background-color: #343a40 ;"
+        temp1.innerText ="Product name: " +JSON.parse(localStorage.getItem(i)).title;
+        temp1.style ="color: white;margin: 0%; font-size: 9pt; font-weight: bold;"
+        div3.append(temp1);
+        div2.append(div3);
 
-        document.querySelector("#cartDiv").append(emp);
-        document.querySelector("#cartDiv").append(temp1);
+        let div4 = document.createElement("div");
+        div4.className = 'col-sm';
+        let temp2 = document.createElement("p");
+        temp2.className = "p0";
+        temp2.innerText =JSON.parse(localStorage.getItem(i)).price+"$";
+        temp2.style ="color: white;margin: 0%; font-size: 12pt; font-weight: bold;"
+        div4.append(temp2);
+        div2.append(div4);
+
+
+
+        let div5 = document.createElement("div");
+        div5.className = 'col-sm';
+        temp3 = document.createElement("button");
+        temp3.innerText= "Add More";
+        temp3.className = "btn btn-primary btn-sm bp";
+        temp3.setAttribute("onclick", "addItem("+JSON.parse(localStorage.getItem(i)).id+",0)");
+
+        temp4 = document.createElement("button");
+        temp4.innerText= "Delete";
+        temp4.className = "btn btn-danger btn-sm bp";
+        temp4.setAttribute("onclick", "delItem("+JSON.parse(localStorage.getItem(i)).id+")");
+
+        div5.append(temp3);
+        div5.append(temp4);
+        div2.append(div5);
+
+
+
+
+        document.querySelector("#cartDiv").append(div1);
+
    
         }
 
@@ -395,7 +434,23 @@ function cartPage(){
 
 // ---------------------------------------------------------------------------------------------------
 
+function delItem(id){
+    let j = -1;
+    for(let i = 0 ; i < 50 ; i++){
+        if(JSON.parse(localStorage.getItem(i)) === null){continue;}
+        if(JSON.parse(localStorage.getItem(i)).id == id){
+            j = i ;
+            break;} 
+    }
 
+if(localStorage.getItem("total_1") - JSON.parse(localStorage.getItem(j)).price < 3 ){localStorage.clear();  cart(); return;}
+localStorage.setItem("total_1", localStorage.getItem("total_1") - JSON.parse(localStorage.getItem(j)).price) ;
+localStorage.removeItem(j);
+cart();
+
+}
+
+// ----------------------------------------------------------------------------------------------------
 
 
 function coupon(){
@@ -501,4 +556,38 @@ function order() {
         s += L[x];}
     alert("Order Number #"+ s);
 
+}
+
+// ------------------------------------------------------------------------------------------------------
+function Users(){
+
+    const users = 
+    [ {
+            UserName:"Tameem",
+            Password:"1122"},
+        {
+            UserName:"Ahmed",
+            Password:"112233"},
+        {
+            UserName:"Ali",
+            Password:"1122-"},]
+
+
+        let pass = document.querySelector("#pass").value;
+        let userName = document.querySelector("#userName").value;
+
+        for(let i =0 ; i < users.length ; i++ ){
+            if(users[i].UserName == userName && users[i].Password == pass){
+                    document.querySelector("#login").innerText = users[i].UserName;
+                    home(); return;
+            }
+        }
+
+
+        let e = document.querySelector("#Epassowrd");
+        e.innerHTML = "";
+        let e2 = document.createElement("p");
+        e2.innerText = "Wrong password or username !";
+        e2.style = "color: red; text-align: center;";
+        e.append(e2);
 }
