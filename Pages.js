@@ -85,6 +85,7 @@ function reviews() {
 }
 // ------------------------------------------------------------------------------------------------------------
 
+
 function catalogue(t) {
     if(document.querySelector("#login").innerText == 'Login'){alert("You must be logged in"); login(); return;}
 
@@ -197,7 +198,7 @@ function catalogue(t) {
 
         let p3 = document.createElement("p");
         p3.className = "details";
-        p3.innerText="Rating : "+ json.rating.rate;
+        p3.innerText="Rating : "+ json.rating.rate+"/5";
 
         button1 = document.createElement("button");
         button1.className = "btn btn-success btn-sm";
@@ -570,7 +571,11 @@ function Users(){
             Password:"112233"},
         {
             UserName:"Ali",
-            Password:"1122-"},]
+            Password:"1122-"},
+        {
+            UserName:"Admin",
+            Password:"11"}
+        ]
 
 
         let pass = document.querySelector("#pass").value;
