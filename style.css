@@ -1,5 +1,5 @@
 body{
-    background-color: #bebebe;
+    background-color: #f3f3f3;
     animation: body 3s infinite;
 }
 .d0{
@@ -96,6 +96,7 @@ td{
     margin-top: 42px;
     margin-left: 200px;
     margin-right: 200px;
+    margin-bottom: 20px;
     background-color:#343a40 ;
     border: 5px solid #343a40;
     border-radius: 10px 10px 10px 10px;
@@ -135,26 +136,9 @@ ul{
 
 }
 
-@media only screen and (max-width: 900px) { 
-    .dt{
-        margin-left: 5px;
-        margin-right: 5px;
+#b5{ margin-left: 38%;}
 
-    }
-    .hc{
-        font-size: 15pt;
-    }
-    .hc2{
-        font-size: 6pt;
-    }
-    .b1{
-        width: 60px;
-        margin-left: 20%;
-    }
- }
-
-
-
+ 
 #img2{
     animation-name: img3;
     position: relative;
@@ -170,5 +154,81 @@ ul{
         font-size: 11pt;
         margin: 1%;
     }
+
+
+    #card-group2{
+        padding: 25px;
+        display: grid;
+        row-gap: 40px;
+        column-gap: 40px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    #b7{margin: 0 auto;margin-left: 43%; margin-bottom: 5%;}
+
+
+@media only screen and (max-width: 900px) { 
+    .dt{
+        margin-left: 5px;
+        margin-right: 5px;
+
+    }
+    .hc{
+        font-size: 15pt;
+    }
+    .hc2{
+        font-size: 6pt;
+    }
+    .b1{
+        width: 60px;
+        margin-left: 57%;
+    }
+    #b5{
+        margin-left: 34%;
+        
+        
+    }
+    #card-group2{
+        padding: 25px;
+        display: grid;
+        row-gap: 40px;
+        column-gap: 40px;
+        grid-template-columns: 1fr 1fr;
+    }
+    #b7{margin-left: 40%;
+        margin-bottom: 5%;}
+ }
+
+
+
+ @media only screen and (max-width: 480px) { 
+    .dt{
+        margin-left: 5px;
+        margin-right: 5px;
+
+    }
+    .hc{
+        font-size: 15pt;
+    }
+    .hc2{
+        font-size: 6pt;
+    }
+    #b5{
+        margin-left: 14%;
+        
+        
+    }
+    #card-group2{
+        padding: 25px;
+        display: grid;
+        row-gap: 40px;
+        column-gap: 40px;
+        grid-template-columns: 1fr;
+    }
+    #b7{margin-left: 25%;
+         margin-bottom: 5%;}
+ }
+
+
+
 
 
