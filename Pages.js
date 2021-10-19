@@ -1,4 +1,15 @@
 localStorage.clear();
+
+let json1 = [];
+json1.push(null);
+fetch('https://fakestoreapi.com/products')
+.then(function(response) {return response.json()}).then(function (json)
+{ 
+    for(let i = 0 ; i < json.length ; i ++)
+    {json1.push(json[i]);}
+    })
+
+
 function home(){
 
 let div = document.querySelector(".d0");
@@ -81,7 +92,8 @@ function login() {
 
 function reviews() {
     let div = document.querySelector(".d0");
-    div.innerHTML = '<div id="add"> <div class="d10"> <img src="Imges/icon.png" id="img2" style="border: none;  margin-left: 1%;" width="50px" height="50px" alt=""> <h6 class="he5">@Ahmed</h6> <p class="pr2">Thank you for the quality of dealing and the quality of the goods. Really fast response and delivery. The Rolex watch is very good and beautiful. I hope to find a way to provide a guarantee to complement the excellent service. Thanks again.</p> </div> <div class="d10"> <img src="Imges/icon.png" style="border: none;  margin-left: 1%;" width="50px" height="50px" alt=""> <h6 class="he5">@Omar</h6> <p class="pr2">The product is excellent. The treatment was very courteous and respectful. As well as punctuality in their appointments.</p> </div> <div class="d10"> <img src="Imges/icon.png" style="border: none;  margin-left: 1%;" width="50px" height="50px" alt=""> <h6 class="he5">@Rand</h6> <p class="pr2">Excellent and reliable interaction. The watch is awesome and better than the picture. The order arrived on time, thank you.</p> </div> </div> <div class="d10"> <form id="rev"> <div class="form-group"> <label for="exampleFormControlInput1">User Name:</label> <input type="text" class="form-control" id="userR" placeholder="user" required> </div> <div class="form-group"> <label for="exampleFormControlTextarea1">Your review:</label> <textarea class="form-control" id="userM" rows="3" placeholder="Write your review" name="msg"></textarea> </div> <br> <br> <button type="button" onclick="addReviews()" class="btn btn-outline-primary">Send</button> </form> </div>';
+    div.innerHTML = '<div id="add"> <div class="d10"> <img src="Imges/icon.png" id="img2" style="border: none;  margin-left: 1%;" width="50px" height="50px" alt=""> <h6 class="he5">@Ahmed</h6> <p class="pr2">Thank you for the quality of dealing and the quality of the goods. Really fast response and delivery. The Rolex watch is very good and beautiful. I hope to find a way to provide a guarantee to complement the excellent service. Thanks again.</p> </div> <div class="d10"> <img src="Imges/icon.png" style="border: none;  margin-left: 1%;" width="50px" height="50px" alt=""> <h6 class="he5">@Omar</h6> <p class="pr2">The product is excellent. The treatment was very courteous and respectful. As well as punctuality in their appointments.</p> </div> <div class="d10"> <img src="Imges/icon.png" style="border: none;  margin-left: 1%;" width="50px" height="50px" alt=""> <h6 class="he5">@Rand</h6> <p class="pr2">Excellent and reliable interaction. The watch is awesome and better than the picture. The order arrived on time, thank you.</p> </div> </div> <div class="d10"> <form id="rev"> <div class="form-group"> <label for="exampleFormControlInput1">User Name:</label> <input type="text" class="form-control" id="userR" placeholder="user" readonly="readonly"> </div> <div class="form-group"> <label for="exampleFormControlTextarea1">Your review:</label> <textarea class="form-control" id="userM" rows="3" placeholder="Write your review" name="msg"></textarea> </div> <br> <br> <button type="button" onclick="addReviews()" class="btn btn-outline-primary">Send</button> </form> </div>'
+    document.querySelector("#userR").value = document.querySelector("#login").innerHTML;
 }
 // ------------------------------------------------------------------------------------------------------------
 
@@ -90,9 +102,7 @@ function catalogue(t) {
     if(document.querySelector("#login").innerText == 'Login'){alert("You must be logged in"); login(); return;}
 
    
-    fetch('https://fakestoreapi.com/products')
-    .then(function(response) {return response.json()}).then(function (json)
-    { 
+
     
 
 
@@ -104,9 +114,10 @@ function catalogue(t) {
         div2.className = "card-group" ;
         div2.id = "card-group2" ;
 
-        for(let i = 0; i < json.length  ; i++ , j++){
-            if(t[0] == json[i].category[0]){
-            if(j == 4){
+        for(let i = 0; i < json1.length  ; i++ , j++){
+            if(json1[i] == null){continue;}
+            if(t[0] == json1[i].category[0]){
+            if(j == 5){
         div2 = document.createElement("div");
         div2.className = "card-group" ;
         div2.id = "card-group2" ;
@@ -120,14 +131,14 @@ function catalogue(t) {
         let img1 = document.createElement("img");
         img1.className = "card-img-top";
         img1.style = "height: 150px; border: 1px solid #cccccc; border-radius: 4px 4px 0px 0px;"
-        img1.src = json[i].image;
+        img1.src = json1[i].image;
         div3.append(img1);
     
         let div4 = document.createElement("div");
         div4.className = "card-body" ;
     
         let h = document.createElement("h6");
-        h.innerText = json[i].title;
+        h.innerText = json1[i].title;
         h.style = "color: #343a40;text-align: center;margin: 4%;font-size: 16pt;"
         div4.append(h);
     
@@ -138,12 +149,32 @@ function catalogue(t) {
         small.className = "text-muted" ;
     
         let button = document.createElement("button");
-        button.className ="btn btn-secondary btn-sm" ;
+        button.className ="btn btn-outline-secondary btn-sm" ;
         button.style = "width: 100%;";
         button.innerText="More details"
-        button.setAttribute("onclick", "details("+json[i].id+")");
-    
+        button.setAttribute("onclick", "details("+json1[i].id+")");
+
         small.append(button);
+
+        let button2 = document.createElement("button");
+        button2.className ="btn btn-outline-primary  btn-sm" ;
+        button2.style = "width: 100%;";
+        button2.innerText="Edit product"
+        button2.setAttribute("onclick", "edit_product1("+json1[i].id+")");
+
+        let button3 = document.createElement("button");
+        button3.className ="btn btn-outline-danger btn-sm" ;
+        button3.style = "width: 100%;";
+        button3.innerText="Delete product"
+        button3.setAttribute("onclick", "del_product("+json1[i].id+")");
+
+        if(document.querySelector("#login").innerText == 'Admin'){ 
+
+                small.append(button2);
+                small.append(button3);}
+
+
+
         div5.append(small);
     
         div3.append(div4);
@@ -156,20 +187,169 @@ function catalogue(t) {
     }}
         
     
-      })
+      
+    if(document.querySelector("#login").innerText == 'Admin'){
+        let div3 = document.createElement("div");
+        div3.className = "card";
+        div3.id = "card"
+        div3.style = "border: 5px solid #cccccc; border-radius: 10px 10px 10px 10px; background-color: #f3f3f3;"
+    
+        let div4 = document.createElement("div");
+        div4.className = "card-body" ;
+    
+        let h = document.createElement("h6");
+        h.innerText = "Add new product";
+        h.style = "color: #343a40;text-align: center;margin: 4%;font-size: 16pt;"
+        div4.append(h);
+    
+        let div5 = document.createElement("div");
+        div5.className = "card-footer" ;
+    
+        let small = document.createElement("small");
+        small.className = "text-muted" ;
+    
+        let button = document.createElement("button");
+        button.className ="btn btn-secondary btn-sm" ;
+        button.style = "width: 100%;";
+        button.innerText="Add"
+        button.setAttribute("onclick", "Add_product1()");
+    
+        small.append(button);
+        div5.append(small);
+    
+        div3.append(div4);
+        div3.append(div5);
+    
+        div2.append(div3);
+        div0.append(div2);
+    }
+
+
 
 
 
       
     }
+
+
+
 // ------------------------------------------------------------------------------------------------------------
 
+function del_product(id) {
+    let j = -1;
+    for(let i = 0 ; i < json1.length ; i ++){
+        if(json1[i] == null){continue;}
+        if(json1[i].id == id){
+            j = i;
+            break;
+        }
+    }
+
+    let x =  json1[j].category[0]
+    
+    let temp = [];
+
+    for(let i = 0 ; i < json1.length ; i ++)
+    {
+        if(i == j){continue;}
+        temp.push(json1[i]);}
+
+    json1 = temp;
+    catalogue(x);
+    return;
+}
+
+
+// ------------------------------------------------------------------------------------------------------------
+function Add_product1() {
+    let div0 = document.querySelector(".d0");
+    div0.innerHTML = '<form style="margin: 3%;"> <div class="form-group"> <label for="Title">Title:</label> <input type="text" class="form-control" id="Title" placeholder="New product"> </div> <div class="form-group"> <label for="Price">Price:</label> <input type="number" class="form-control" id="Price" placeholder="100$"> </div> <div class="form-group"> <label for="Image">Image:</label> <input type="text" class="form-control" id="Image" placeholder="https://i.pravatar.cc"> </div> <div class="form-group"> <label for="Category">Category:</label> <select multiple class="form-control" id="Category"> <option value="mens clothing">Mens clothing</option> <option value="womens clothing">Womens clothing</option> <option value="jewelery">Jewelery</option> <option value="electronics">Electronics</option> </select> </div> <div class="form-group"> <label for="Description">Description:</label> <textarea class="form-control" id="Description" rows="3"></textarea> </div> <button type="button" class="btn btn-secondary" onclick="Add_product2()">Add product</button> </form>';
+}
+
+
+function Add_product2() {
+
+              let x =  {
+                    id: json1.length,
+                    title: document.getElementById("Title").value,
+                    price: parseInt(document.getElementById("Price").value),
+                    description: document.getElementById("Description").value,
+                    image: document.getElementById("Image").value,
+                    category: document.getElementById("Category").value,
+                    rating: {rate:"0.1" , count:0}
+                };
+                json1.push(x);
+            catalogue(x.category[0]);
+            return;
+}
+
+// ------------------------------------------------------------------------------------------------------------
+
+function edit_product1(id) {
+    
+    for(let i = 0 ; i < json1.length ; i++){
+        if(json1[i] == null){continue;}
+        if(json1[i].id == id){id = i; break; }
+    }
+
+    let div0 = document.querySelector(".d0");
+    div0.innerHTML = '<form style="margin: 3%;"> <div class="form-group"> <label for="Title">Title:</label> <input type="text" class="form-control" id="Title" placeholder="New product"> </div> <div class="form-group"> <label for="Price">Price:</label> <input type="number" class="form-control" id="Price" placeholder="100$"> </div> <div class="form-group"> <label for="Image">Image:</label> <input type="text" class="form-control" id="Image" placeholder="https://i.pravatar.cc"> </div> <div class="form-group"> <label for="Category">Category:</label> <select multiple class="form-control" id="Category"> <option value="mens clothing">Mens clothing</option> <option value="womens clothing">Womens clothing</option> <option value="jewelery">Jewelery</option> <option value="electronics">Electronics</option> </select> </div> <div class="form-group"> <label for="Description">Description:</label> <textarea class="form-control" id="Description" rows="3"></textarea> </div> <button type="button" class="btn btn-secondary" onclick="edit_product2('+id+')">Add product</button> </form>';
+
+    let t = document.querySelector("#Title"); 
+    let p = document.querySelector("#Price"); 
+    let img = document.querySelector("#Image"); 
+    let c = document.querySelector("#Category"); 
+    let d = document.querySelector("#Description"); 
+
+    let j = -1;
+    if(json1[id].category[0] == 'm'){j=0;}
+    if(json1[id].category[0] == 'w'){j=1;}
+    if(json1[id].category[0] == 'j'){j=2;}
+    if(json1[id].category[0] == 'e'){j=3;}
+
+    t.value = json1[id].title;
+    p.value = json1[id].price;
+    img.value = json1[id].image;
+    c.selectedIndex = j;
+    d.innerHTML = json1[id].description;
+
+}
+
+
+
+// -------
+function edit_product2(id) {
+    
+    for(let i = 0 ; i < json1.length ; i++){
+        if(json1[i] == null){continue;}
+        if(json1[i].id == id){id = i; break; }
+    }
+
+
+    let x =  {
+        id: json1.length,
+        title: document.getElementById("Title").value,
+        price: parseInt(document.getElementById("Price").value),
+        description: document.getElementById("Description").value,
+        image: document.getElementById("Image").value,
+        category: document.getElementById("Category").value,
+        rating: {rate:"0.1" , count:0}
+    };
+    json1[id] = x;
+    catalogue(x.category[0]);
+return;
+
+}
+
+// ------------------------------------------------------------------------------------------------------------
 
    function details(id) {
        
-    fetch('https://fakestoreapi.com/products/'+id)
-    .then(function(response) {return response.json()}).then(function (json)
-    { 
+    for(let i = 0 ; i < json1.length ; i++){
+        if(json1[i] == null){continue;}
+        if(json1[i].id == id){id = i; break; }
+    }
+
     
         let div0 = document.querySelector(".d0");
         div0.innerHTML = "";
@@ -179,26 +359,26 @@ function catalogue(t) {
         
 
         let h = document.createElement("h4");
-        h.innerText = json.title;
+        h.innerText = json1[id].title;
         h.className = "details";
 
         let hr = document.createElement("hr");
-        hr.style = "    height: 5px;";
+        hr.style = "height: 5px;";
 
 
         let p1 = document.createElement("p");
         p1.className = "details";
-        p1.innerText="Description : " +json.description;
+        p1.innerText="Description : " +json1[id].description;
 
 
         let p2 = document.createElement("p");
         p2.className = "details";
-        p2.innerText="Price : "+ json.price+'$';
+        p2.innerText="Price : "+ json1[id].price+'$';
 
 
         let p3 = document.createElement("p");
         p3.className = "details";
-        p3.innerText="Rating : "+ json.rating.rate+"/5";
+        p3.innerText="Rating : "+ json1[id].rating.rate+"/5";
 
         button1 = document.createElement("button");
         button1.className = "btn btn-success btn-sm";
@@ -229,7 +409,7 @@ function catalogue(t) {
         div1.append(button2);
         div1.append(button3);
         div0.append(div1);
-      })
+  
 
        
    } 
@@ -278,15 +458,16 @@ function addReviews() {
 
 function addItem(id, t){
 
-    fetch('https://fakestoreapi.com/products/'+id)
-    .then(function(response) {return response.json()}).then(function (json)
-    { 
-        localStorage.setItem(localStorage.length,JSON.stringify(json));
+    for(let i = 0 ; i < json1.length ; i++){
+        if(json1[i] == null){continue;}
+        if(json1[i].id == id){id = i; break; }
+    }
+        localStorage.setItem(localStorage.length,JSON.stringify(json1[id]));
         
 
         let total = 0;
         for(let i = 0 ; i < localStorage.length ; i++){
-            if(JSON.parse(localStorage.getItem(i)) === null){continue;} 
+            if(localStorage.getItem(i) == null){continue;} 
             let temp = JSON.parse(localStorage.getItem(i));
             total += temp.price;
         }
@@ -299,9 +480,6 @@ function addItem(id, t){
 if(t == 0){cart();}
 else{
     catalogue(x);}
-
-})
-
 
 }
 
