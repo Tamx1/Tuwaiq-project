@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Imges/icon1.png" />
+  <img src="Imges/1.png" />
 </p>
 
 # Tuwaiq-project
