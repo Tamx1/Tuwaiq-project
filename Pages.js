@@ -419,7 +419,7 @@ return;
 function cart() {
     if(document.querySelector("#login").innerText == 'Login'){alert("You must be logged in");  login(); return;}
     let div = document.querySelector(".d0");
-    div.innerHTML = '<h2 class="h0">Your Cart</h2> <hr class="hr0" style="height: 3px;"> <div id="empty" ></div> <div id="cartDiv" ></div> <div id="f0"> <div class="form-group mx-sm-3 mb-2"> <label for="c0" class="sr-only" style="margin-top: 40px;">Discount coupon:</label> <input type="text" class="form-control" id="c0" placeholder="Enter yor coupon"> <button onclick="coupon()" class="btn btn-secondary btn-sm">Check Coupon</button> </div> <p id="p_1" style="margin-left: 5%;"></p> </div> <div class="form-group mx-sm-3 mb-2" id="f1"> <label for="s0" class="sr-only">Delivery :</label> <select class="form-select" aria-label="Default select example" id="s0" onclick="delivery()"> <option selected >Select delivery options</option> <option value="1">Standard Shipping +$8</option> <option value="2">Express Shipping +$12</option> <option value="3">Priority Shipping +$18</option> </select> </div> <div id="t"></div> <div id="sub"> <form action="Home.html"> <button  class="btn btn-secondary" id="b7" type="submit" onclick="order()">Complete the order</button> </form> </div>';
+    div.innerHTML = '<h2 class="h0">Your Cart</h2> <hr class="hr0" style="height: 3px;"> <div id="empty" ></div> <div id="cartDiv" ></div> <div id="f0"> <div class="form-group mx-sm-3 mb-2"> <label for="c0" class="sr-only" style="margin-top: 40px;">Discount coupon:</label> <input type="text" class="form-control" id="c0" placeholder="Enter yor coupon"> <button onclick="coupon()" class="btn btn-secondary btn-sm">Check Coupon</button> </div> <p id="p_1" style="margin-left: 5%;"></p> </div> <div class="form-group mx-sm-3 mb-2" id="f1"> <label for="s0" class="sr-only">Delivery :</label> <select class="form-select" aria-label="Default select example" id="s0" onclick="delivery()"> <option selected >Select delivery options</option> <option value="1">Standard Shipping +$8</option> <option value="2">Express Shipping +$12</option> <option value="3">Priority Shipping +$18</option> </select> </div> <div id="t"></div> <div id="sub"> <form> <button  class="btn btn-secondary" id="b7" type="button" onclick="order()">Complete the order</button> </form> </div>';
     cartPage();
 }
 
@@ -748,6 +748,7 @@ function order() {
         let x = Math.floor(Math.random() * L.length);
         s += L[x];}
     alert("Order Number #"+ s);
+    home();
 
 }
 
