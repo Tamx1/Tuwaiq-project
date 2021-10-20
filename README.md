@@ -1,6 +1,6 @@
 # Online store 
 
-Buy personal products.
+Site to display and sell products.
 
 ## Description
 
