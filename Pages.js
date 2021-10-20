@@ -1,5 +1,3 @@
-localStorage.clear();
-
 let json1 = [];
 json1.push(null);
 fetch('https://fakestoreapi.com/products')
@@ -11,6 +9,10 @@ fetch('https://fakestoreapi.com/products')
 
 
 function home(){
+
+if(localStorage.getItem("login") != null){
+    document.querySelector("#login").innerHTML = localStorage.getItem("login");
+}
 
 let div = document.querySelector(".d0");
 div.innerHTML = "";
@@ -537,7 +539,7 @@ function cartPage(){
 
 
 
-    if(localStorage.length == 0){
+    if(localStorage.length == 0 || localStorage.length == 1){
         let x = document.createElement("p");
         x.className = "p0"
         x.innerText = "Your cart is empty";
@@ -636,7 +638,14 @@ function delItem(id){
             break;} 
     }
 
-if(localStorage.getItem("total_1") - JSON.parse(localStorage.getItem(j)).price < 3 ){localStorage.clear();  cart(); return;}
+if(localStorage.getItem("total_1") - JSON.parse(localStorage.getItem(j)).price < 3 ){
+    localStorage.removeItem("total_1");  
+    localStorage.removeItem("total_2");  
+    localStorage.removeItem("total");  
+    localStorage.removeItem("coupon");  
+    localStorage.removeItem("delivery");  
+    localStorage.removeItem(j);
+    cart(); return;}
 localStorage.setItem("total_1", localStorage.getItem("total_1") - JSON.parse(localStorage.getItem(j)).price) ;
 localStorage.removeItem(j);
 cart();
@@ -741,7 +750,18 @@ function delivery() {
 
 // -------------------------------------------------------------------------------------------------
 function order() {
-    localStorage.clear();
+    localStorage.removeItem("total_1");  
+    localStorage.removeItem("total_2");  
+    localStorage.removeItem("total");  
+    localStorage.removeItem("coupon");  
+    localStorage.removeItem("delivery");
+    
+    for(let i = 0 ; i < 100 ; i++){
+        if(localStorage.getItem(i) == null){continue;} 
+        localStorage.removeItem(i);
+    }
+
+
     const L = ["A","B","C","D","E","F","G","H","I","G","K","L","M","N","Q","R","S","T","U","0","1","2","3","4","5","6","7","8","9"];
     let s = "";
     for(let i = 0 ; i < 12 ; i++){
@@ -777,6 +797,7 @@ function Users(){
         for(let i =0 ; i < users.length ; i++ ){
             if(users[i].UserName == userName && users[i].Password == pass){
                     document.querySelector("#login").innerText = users[i].UserName;
+                    localStorage.setItem("login", users[i].UserName);
                     home(); return;
             }
         }
