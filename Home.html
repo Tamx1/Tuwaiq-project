@@ -16,46 +16,47 @@
 <!-- ---------------------------nav-----------------------------------  -->
 
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-      <a class="navbar-brand" href="#"><img src="Imges/icon1.png" alt="Logo" class="img-fluid" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <div class="container-fluid">
+        <a class="navbar-brand"  style="margin-left: 2%;"><img src="Imges/icon1.png" class="img-fluid" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mx-auto">
-              <li class="nav-item">
-                  <a class="nav-link active"  onclick="home()">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"  onclick="about()">About us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"  onclick="contact()">Contact us</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Catalogue
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <li><a class="dropdown-item" onclick='catalogue("m")'>Men's clothing</a></li>
-                      <li><a class="dropdown-item" onclick='catalogue("w")'>Women's clothing</a></li>
-                      <li><a class="dropdown-item" onclick='catalogue("j")'>Jewelery</a></li>
-                      <li><a class="dropdown-item" onclick='catalogue("e")'>Electronics</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" onclick="cart()">Cart</a>
-              </li>
-          </ul>
-          <div class="d-flex">
-              <button class="btn btn-light ms-3" onclick="login()" id="login">Login</button>
-          </div>
-      </div>
-  </div>
-</nav>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" onclick="home()">Home</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" onclick="about()">About us</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="contact()">Contact us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Catalogue
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#" onclick='catalogue("m")'>Men's clothing</a></li>
+              <li><a class="dropdown-item" href="#" onclick='catalogue("w")'>Women's clothing</a></li>
+              <li><a class="dropdown-item" href="#" onclick='catalogue("j")'>Jewelery</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick='catalogue("e")'>Electronics</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="cart()">Cart</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+            <button class="btn btn-light ms-3" onclick="login()" id="login">Login</button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
 
 <!-- ---------------------------Contant-----------------------------------  -->
@@ -78,12 +79,10 @@
 
 
 
-<footer class="f0">
-    <a href="https://twitter.com/" class="u0 text-primary"> Twitter </a>  |
-    <a href="https://www.instagram.com/" class="u0 text-primary"> Instagram</a>    |
+<footer class="f0"> 
     <a onclick="contact()" class="u0 text-primary"> Contact </a>  |
     <a onclick="about()" class="u0 text-primary"> About Us</a>
-    <p class="u0">Creator By <a href="" class="u0"> Tameem Alsulmi </a></p>
+    <p class="u0">Creator By <a  class="u0"> Tameem Alsulmi </a></p>
 
   </footer> 
 

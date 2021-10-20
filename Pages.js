@@ -293,7 +293,7 @@ function edit_product1(id) {
     }
 
     let div0 = document.querySelector(".d0");
-    div0.innerHTML = '<form style="margin: 3%;"> <div class="form-group"> <label for="Title">Title:</label> <input type="text" class="form-control" id="Title" placeholder="New product"> </div> <div class="form-group"> <label for="Price">Price:</label> <input type="number" class="form-control" id="Price" placeholder="100$"> </div> <div class="form-group"> <label for="Image">Image:</label> <input type="text" class="form-control" id="Image" placeholder="https://i.pravatar.cc"> </div> <div class="form-group"> <label for="Category">Category:</label> <select multiple class="form-control" id="Category"> <option value="mens clothing">Mens clothing</option> <option value="womens clothing">Womens clothing</option> <option value="jewelery">Jewelery</option> <option value="electronics">Electronics</option> </select> </div> <div class="form-group"> <label for="Description">Description:</label> <textarea class="form-control" id="Description" rows="3"></textarea> </div> <button type="button" class="btn btn-secondary" onclick="edit_product2('+id+')">Add product</button> </form>';
+    div0.innerHTML = '<form style="margin: 3%;"> <div class="form-group"> <label for="Title">Title:</label> <input type="text" class="form-control" id="Title" placeholder="New product"> </div> <div class="form-group"> <label for="Price">Price:</label> <input type="number" class="form-control" id="Price" placeholder="100$"> </div> <div class="form-group"> <label for="Image">Image:</label> <input type="text" class="form-control" id="Image" placeholder="https://i.pravatar.cc"> </div> <div class="form-group"> <label for="Category">Category:</label> <select multiple class="form-control" id="Category"> <option value="mens clothing">Mens clothing</option> <option value="womens clothing">Womens clothing</option> <option value="jewelery">Jewelery</option> <option value="electronics">Electronics</option> </select> </div> <div class="form-group"> <label for="Description">Description:</label> <textarea class="form-control" id="Description" rows="3"></textarea> </div> <button type="button" class="btn btn-secondary" onclick="edit_product2('+id+')">Edit product</button> </form>';
 
     let t = document.querySelector("#Title"); 
     let p = document.querySelector("#Price"); 
@@ -462,17 +462,31 @@ function addItem(id, t){
         if(json1[i] == null){continue;}
         if(json1[i].id == id){id = i; break; }
     }
-        localStorage.setItem(localStorage.length,JSON.stringify(json1[id]));
+
+
+    let len = localStorage.length;
+    if(localStorage.getItem(len) != null){
+        for (let i = 1; i < 100; i++) {
+            if(localStorage.getItem(len + i) == null){
+                localStorage.setItem(len + i,JSON.stringify(json1[id]));
+                break;
+            }          
+        }
+    }else{
+        localStorage.setItem(len,JSON.stringify(json1[id])); 
+    }
+        
         
 
         let total = 0;
-        for(let i = 0 ; i < localStorage.length ; i++){
+        for(let i = 0 ; i < 100 ; i++){
             if(localStorage.getItem(i) == null){continue;} 
             let temp = JSON.parse(localStorage.getItem(i));
             total += temp.price;
         }
-    let temp = JSON.parse(localStorage.getItem(localStorage.length-1));
+    let temp = json1[id];
     let x = temp.category;
+
     setTotal2(total);
     setTotal3(total);
     localStorage.setItem("coupon" , "false");
