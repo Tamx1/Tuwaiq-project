@@ -8,10 +8,9 @@ Building an online store to sell personal products, and this project aims to fac
 
 ## Executing program
 
-* The main file that needs to be done to execute the program
 
 ```
-code blocks for commands
+ https://tamx1.github.io/Tuwaiq-project/
 ```
 
 ## API
